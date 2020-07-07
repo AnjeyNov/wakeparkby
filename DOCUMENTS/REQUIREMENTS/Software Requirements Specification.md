@@ -2,34 +2,34 @@
 ---
 
 # Содержание
-1 [Введение](#intro)  
-1.1 [Назначение](#appointment)  
-1.2 [Бизнес-требования](#business_requirements)  
-1.2.1 [Исходные данные](#initial_data)  
-1.2.2 [Возможности бизнеса](#business_opportunities)  
-1.2.3 [Границы проекта](#project_boundary) 
-1.3 [Аналоги](#analogs)  
-2 [Требования пользователя](#user_requirements)  
-2.1 [Программные интерфейсы](#software_interfaces) 
-2.1.1 [Сервисы](#services) 
-2.1.2 [Билеотеки](#libraries)
-2.2 [Интерфейс пользователя](#user_interface)  
-2.3 [Характеристики пользователей](#user_specifications)   
-2.3.1 [Аудитория приложения](#application_audience)   
-2.4 [Предположения и зависимости](#assumptions_and_dependencies)  
-3 [Системные требования](#system_requirements)  
-3.1 [Функциональные требования](#functional_requirements)  
-3.1.1 [Основные функции](#main_functions)  
-3.1.1.1 [Создание аккаунта](#create_account)  
-3.1.1.2 [Вход в ранее созданный аккаунт](#signin)  
-3.1.1.3 [Бронирование времени тренировки](#booking)  
-3.1.1.4 [Отмена бронирования](#cansel_booking)  
-3.1.1.5 [Просмотр истории и предстоящих тренировок](#history)  
-3.1.2 [Ограничения и исключения](#restrictions_and_exclusions)  
-3.2 [Нефункциональные требования](#non-functional_requirements)  
-3.2.1 [Атрибуты качества](#quality_attributes)
-3.2.1.1 [Требования к удобству пользователя](#usability_requirements) 
-3.2.2 [Ограничения](#restrictions)  
+1 [Введение](#intro) <br>
+1.1 [Назначение](#appointment) <br>
+1.2 [Бизнес-требования](#business_requirements) <br>
+1.2.1 [Исходные данные](#initial_data) <br>
+1.2.2 [Возможности бизнеса](#business_opportunities) <br>
+1.2.3 [Границы проекта](#project_boundary) <br>
+1.3 [Аналоги](#analogs) <br>
+2 [Требования пользователя](#user_requirements) <br>
+2.1 [Программные интерфейсы](#software_interfaces) <br>
+2.1.1 [Сервисы](#services) <br>
+2.1.2 [Библеотеки](#libraries) <br>
+2.2 [Интерфейс пользователя](#user_interface) <br>
+2.3 [Характеристики пользователей](#user_specifications) <br>
+2.3.1 [Аудитория приложения](#application_audience) <br>
+2.4 [Предположения и зависимости](#assumptions_and_dependencies) <br>
+3 [Системные требования](#system_requirements) <br>
+3.1 [Функциональные требования](#functional_requirements) <br>
+3.1.1 [Основные функции](#main_functions) <br>
+3.1.1.1 [Создание аккаунта](#create_account) <br>
+3.1.1.2 [Вход в ранее созданный аккаунт](#signin) <br>
+3.1.1.3 [Бронирование времени тренировки](#booking) <br>
+3.1.1.4 [Отмена бронирования](#cansel_booking) <br>
+3.1.1.5 [Просмотр истории и предстоящих тренировок](#history) <br>
+3.1.2 [Ограничения и исключения](#restrictions_and_exclusions) <br>
+3.2 [Нефункциональные требования](#non-functional_requirements) <br>
+3.2.1 [Атрибуты качества](#quality_attributes) <br>
+3.2.1.1 [Требования к удобству пользователя](#usability_requirements) <br>
+3.2.2 [Ограничения](#restrictions) <br>
 
 <a name="intro"/>
 
@@ -88,28 +88,28 @@
 <a name="user_interface"/>
 
 ## 2.2 Интерфейс пользователя
-Экран загрузки.
-![Экран загрузки](/IMAGES/MOCKUPS/LaunchScreen.png)
-Экран авторизации.
-![Экран авторизации](/IMAGES/MOCKUPS/SignInScreen.png)
-Экран ввода кода из SMS. (Справа неудачная попытка)
-![Экран ввода кода из SMS](/IMAGES/MOCKUPS/SMSScreen.png)
-Экран регистрации. 
-![Экран регистрации](/IMAGES/MOCKUPS/CreateAccountScreen.png)
-Экран выбора даты бронирования. 
-![Экран выбора даты бронирования](/IMAGES/MOCKUPS/BookingScreen1.png)
-Экран выбора реверса и времени бронирования. 
-![Экран выбора реверса и времени бронирования](/IMAGES/MOCKUPS/BookingScreen2.png)
-Экран подтверждения бронирования. 
-![Экран подтверждения бронирования](/IMAGES/MOCKUPS/BookingScreen3.png)
-Экран просмотра абонемента. 
-![Экран просмотра абонемента](/IMAGES/MOCKUPS/SubscriptionScreen1.png)
-Экран пополнения абонемента. 
-![Экран пополнения абонемента](/IMAGES/MOCKUPS/SubscriptionScreen2.png)
-Экран просмотра истории. 
-![Экран просмотра истории](/IMAGES/MOCKUPS/HistoryScreen.png)
-Экран просмотра аккаунта. 
-![Экран просмотра аккаунта](/IMAGES/MOCKUPS/AccountScreen.png)
+Экран загрузки. <br>
+![](/IMAGES/MOCKUPS/LaunchScreen.png) <br>
+Экран авторизации. <br>
+![](/IMAGES/MOCKUPS/SignInScreen.png) <br>
+Экран ввода кода из SMS. (Справа неудачная попытка) <br>
+![](/IMAGES/MOCKUPS/SMSScreen.png) <br>
+Экран регистрации. <br>
+![](/IMAGES/MOCKUPS/CreateAccountScreen.png) <br>
+Экран выбора даты бронирования. <br>
+![](/IMAGES/MOCKUPS/BookingScreen1.png) <br>
+Экран выбора реверса и времени бронирования. <br>
+![](/IMAGES/MOCKUPS/BookingScreen2.png) <br>
+Экран подтверждения бронирования. <br>
+![](/IMAGES/MOCKUPS/BookingScreen3.png) <br>
+Экран просмотра абонемента. <br>
+![](/IMAGES/MOCKUPS/SubscriptionScreen1.png) <br>
+Экран пополнения абонемента. <br>
+![](/IMAGES/MOCKUPS/SubscriptionScreen2.png) <br>
+Экран просмотра истории. <br>
+![](/IMAGES/MOCKUPS/HistoryScreen.png) <br>
+Экран просмотра аккаунта. <br>
+![](/IMAGES/MOCKUPS/AccountScreen.png) <br>
 
 <a name="user_specifications"/>
 
