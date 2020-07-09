@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3790F05C24B5BF69006A9687 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3790F05B24B5BF69006A9687 /* CustomTextField.swift */; };
 		37D22A7224B47C8100C187A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D22A7124B47C8100C187A4 /* AppDelegate.swift */; };
 		37D22A7424B47C8100C187A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D22A7324B47C8100C187A4 /* SceneDelegate.swift */; };
 		37D22A7624B47C8100C187A4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D22A7524B47C8100C187A4 /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3790F05B24B5BF69006A9687 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		37D22A6E24B47C8100C187A4 /* WAKEPARKBY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WAKEPARKBY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37D22A7124B47C8100C187A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		37D22A7324B47C8100C187A4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +39,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3790F05924B5BF08006A9687 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				3790F05A24B5BF22006A9687 /* TextField */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
+		3790F05A24B5BF22006A9687 /* TextField */ = {
+			isa = PBXGroup;
+			children = (
+				3790F05B24B5BF69006A9687 /* CustomTextField.swift */,
+			);
+			path = TextField;
+			sourceTree = "<group>";
+		};
 		37D22A6524B47C8000C187A4 = {
 			isa = PBXGroup;
 			children = (
@@ -56,6 +74,7 @@
 		37D22A7024B47C8100C187A4 /* WAKEPARKBY */ = {
 			isa = PBXGroup;
 			children = (
+				3790F05924B5BF08006A9687 /* Custom */,
 				37D22A7124B47C8100C187A4 /* AppDelegate.swift */,
 				37D22A7324B47C8100C187A4 /* SceneDelegate.swift */,
 				37D22A7524B47C8100C187A4 /* ViewController.swift */,
@@ -138,6 +157,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3790F05C24B5BF69006A9687 /* CustomTextField.swift in Sources */,
 				37D22A7624B47C8100C187A4 /* ViewController.swift in Sources */,
 				37D22A7224B47C8100C187A4 /* AppDelegate.swift in Sources */,
 				37D22A7424B47C8100C187A4 /* SceneDelegate.swift in Sources */,
