@@ -19,7 +19,7 @@ class CustomTextField: UITextField {
         }
     }
     
-    @IBInspectable var selectedLineColor : UIColor = UIColor.red {
+    @IBInspectable var selectedLineColor : UIColor = UIColor.blue {
         didSet {
         }
     }
@@ -36,6 +36,10 @@ class CustomTextField: UITextField {
         self.borderStyle = .none
         self.layer.addSublayer(border)
         self.layer.masksToBounds = true
+    }
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
         border.backgroundColor = lineColor.cgColor
         border.frame = CGRect(x: 0, y: self.frame.size.height - lineHeight, width:  self.frame.size.width, height: lineHeight)
         border.cornerRadius = border.frame.height/2;
