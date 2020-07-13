@@ -61,4 +61,9 @@ extension CustomTextField: UITextFieldDelegate {
         lineHeight = CGFloat(1.0)
         border.cornerRadius = border.frame.height/2;
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.resignFirstResponder()
+        return true
+    }
 }
