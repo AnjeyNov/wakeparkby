@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		373D63A624BC31ED00263847 /* RegistryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373D63A524BC31ED00263847 /* RegistryViewController.swift */; };
+		373D63A924BC9D2800263847 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373D63A824BC9D2800263847 /* Person.swift */; };
 		3756583824B7A7F5002A5DCE /* SigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3756583624B7A7F5002A5DCE /* SigninViewController.swift */; };
 		3790F05C24B5BF69006A9687 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3790F05B24B5BF69006A9687 /* CustomTextField.swift */; };
 		37D22A7224B47C8100C187A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D22A7124B47C8100C187A4 /* AppDelegate.swift */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		373D63A524BC31ED00263847 /* RegistryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistryViewController.swift; sourceTree = "<group>"; };
+		373D63A824BC9D2800263847 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		3756583624B7A7F5002A5DCE /* SigninViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninViewController.swift; sourceTree = "<group>"; };
 		3790F05B24B5BF69006A9687 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		37D22A6E24B47C8100C187A4 /* WAKEPARKBY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WAKEPARKBY.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,6 +47,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		373D63A424BC31A900263847 /* RegistryViewController */ = {
+			isa = PBXGroup;
+			children = (
+				373D63A524BC31ED00263847 /* RegistryViewController.swift */,
+			);
+			path = RegistryViewController;
+			sourceTree = "<group>";
+		};
+		373D63A724BC9D0E00263847 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				373D63A824BC9D2800263847 /* Person.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		3756583A24B7A802002A5DCE /* SigninViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +107,8 @@
 		37D22A7024B47C8100C187A4 /* WAKEPARKBY */ = {
 			isa = PBXGroup;
 			children = (
+				373D63A724BC9D0E00263847 /* Model */,
+				373D63A424BC31A900263847 /* RegistryViewController */,
 				3756583A24B7A802002A5DCE /* SigninViewController */,
 				3790F05924B5BF08006A9687 /* Custom */,
 				37D22A7124B47C8100C187A4 /* AppDelegate.swift */,
@@ -180,9 +202,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3790F05C24B5BF69006A9687 /* CustomTextField.swift in Sources */,
+				373D63A624BC31ED00263847 /* RegistryViewController.swift in Sources */,
 				3756583824B7A7F5002A5DCE /* SigninViewController.swift in Sources */,
 				37E5664E24B84104000D6AB9 /* CustomButton.swift in Sources */,
 				37D22A7624B47C8100C187A4 /* ViewController.swift in Sources */,
+				373D63A924BC9D2800263847 /* Person.swift in Sources */,
 				37D22A7224B47C8100C187A4 /* AppDelegate.swift in Sources */,
 				37D22A7424B47C8100C187A4 /* SceneDelegate.swift in Sources */,
 			);

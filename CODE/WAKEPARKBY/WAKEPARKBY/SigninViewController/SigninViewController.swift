@@ -16,6 +16,10 @@ class SigninViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let tapScreen = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard(sender:)))
+        tapScreen.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tapScreen)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -28,12 +32,14 @@ class SigninViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
-    @IBAction func signinButtonTapped(_ sender: CustomButton) {
-        
+    @objc func dismissKeyboard(sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
     }
     
-    @IBAction func createButtonTapped(_ sender: UIButton) {
+    @IBAction func signinButtonTapped(_ sender: CustomButton) {
+        self.view.endEditing(true)
     }
+    
     /*
     // MARK: - Navigation
 
