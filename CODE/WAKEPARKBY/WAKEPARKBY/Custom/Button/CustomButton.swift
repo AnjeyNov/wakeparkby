@@ -32,15 +32,10 @@ class CustomButton: UIButton {
         }
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
         cornerRadius = self.frame.height/2
     }
-    
-//    override func draw(_ rect: CGRect) {
-//        super.draw(rect)
-//        cornerRadius = self.frame.height/2
-//    }
     
 
 }
