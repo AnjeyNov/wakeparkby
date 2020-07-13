@@ -18,6 +18,14 @@ class RegistryViewController: UIViewController {
         self.view.addGestureRecognizer(tapScreen)
     }
     
+    @objc func keyboardWillShow(notification: NSNotification) {
+        print(notification)
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        print(notification)
+    }
+    
     @objc func dismissKeyboard(sender: UITapGestureRecognizer) {
            self.view.endEditing(true)
        }
@@ -32,4 +40,19 @@ class RegistryViewController: UIViewController {
     }
     */
 
+}
+
+fileprivate extension RegistryViewController {
+    func subscribe() {
+            
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.keyboardWillShow(notification:)),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.keyboardWillHide(notification:)),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+    }
 }

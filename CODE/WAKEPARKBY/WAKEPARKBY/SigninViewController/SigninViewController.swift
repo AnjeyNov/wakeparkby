@@ -16,10 +16,12 @@ class SigninViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.subscribe()
         
         let tapScreen = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard(sender:)))
         tapScreen.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapScreen)
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -36,10 +38,37 @@ class SigninViewController: UIViewController {
         self.view.endEditing(true)
     }
     
+    @objc func keyboardWillShow(notification: NSNotification) {
+        print(notification)
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        print(notification)
+    }
+    
+    
     @IBAction func signinButtonTapped(_ sender: CustomButton) {
         self.view.endEditing(true)
     }
     
+}
+
+    
+fileprivate extension SigninViewController {
+    func subscribe() {
+            
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.keyboardWillShow(notification:)),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.keyboardWillHide(notification:)),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+    }
+        
+}
     /*
     // MARK: - Navigation
 
@@ -50,4 +79,3 @@ class SigninViewController: UIViewController {
     }
     */
 
-}
