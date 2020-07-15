@@ -75,9 +75,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="Ls2-d5-Opo"/>
                     <connections>
+                        <outlet property="bottomConstraint" destination="fu2-Mj-9zw" id="fz0-WH-whF"/>
                         <outlet property="createButton" destination="7pW-R9-b2i" id="AbR-Ah-qGV"/>
                         <outlet property="numberField" destination="sxk-Eb-uJw" id="mPj-bL-Hub"/>
                         <outlet property="signinButton" destination="Otq-PA-qhb" id="3dQ-el-2oj"/>
+                        <outlet property="stackView" destination="S7V-MC-zvy" id="mLm-gX-u7K"/>
                         <outlet property="topConstraint" destination="MJI-ia-aav" id="ISj-17-EhV"/>
                     </connections>
                 </viewController>

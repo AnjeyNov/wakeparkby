@@ -14,7 +14,10 @@ class SigninViewController: UIViewController {
     @IBOutlet weak var signinButton: CustomButton!
     @IBOutlet weak var createButton: UIButton!
     
+    @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.subscribe()
@@ -28,6 +31,7 @@ class SigninViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
