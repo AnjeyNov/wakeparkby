@@ -14,6 +14,7 @@ class SigninViewController: UIViewController {
     @IBOutlet weak var signinButton: CustomButton!
     @IBOutlet weak var createButton: UIButton!
     
+    @IBOutlet weak var topConstraint: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.subscribe()

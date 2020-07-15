@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="S7V-MC-zvy">
-                                <rect key="frame" x="52" y="359.5" width="310.5" height="177"/>
+                                <rect key="frame" x="52" y="375" width="310.5" height="147"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="kCr-3y-Okd">
                                         <rect key="frame" x="0.0" y="0.0" width="310.5" height="37"/>
@@ -24,8 +24,8 @@
                                             <constraint firstAttribute="width" secondItem="kCr-3y-Okd" secondAttribute="height" multiplier="1172:140" id="fBl-IV-r1a"/>
                                         </constraints>
                                     </imageView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="tJ9-T0-1vg">
-                                        <rect key="frame" x="0.0" y="67" width="310.5" height="110"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="tJ9-T0-1vg">
+                                        <rect key="frame" x="0.0" y="37" width="310.5" height="110"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sxk-Eb-uJw" customClass="CustomTextField" customModule="WAKEPARKBY" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="310.5" height="30"/>
@@ -33,7 +33,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Otq-PA-qhb" customClass="CustomButton" customModule="WAKEPARKBY" customModuleProvider="target">
-                                                <rect key="frame" x="115.5" y="40" width="79" height="30"/>
+                                                <rect key="frame" x="0.0" y="40" width="310.5" height="30"/>
                                                 <state key="normal" title=" Send SMS ">
                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
@@ -48,7 +48,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7pW-R9-b2i">
-                                                <rect key="frame" x="114.5" y="80" width="81" height="30"/>
+                                                <rect key="frame" x="0.0" y="80" width="310.5" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <state key="normal" title="Create account"/>
                                                 <connections>
@@ -59,16 +59,17 @@
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="tJ9-T0-1vg" firstAttribute="top" secondItem="kCr-3y-Okd" secondAttribute="bottom" constant="30" id="XGY-aw-T6B"/>
-                                    <constraint firstItem="sxk-Eb-uJw" firstAttribute="width" secondItem="kCr-3y-Okd" secondAttribute="width" id="b2f-px-HsV"/>
+                                    <constraint firstAttribute="height" constant="147" id="WHp-So-hXz"/>
+                                    <constraint firstItem="sxk-Eb-uJw" firstAttribute="width" secondItem="kCr-3y-Okd" secondAttribute="width" id="oOw-Sq-yyA"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="kCr-3y-Okd" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.75" id="alJ-rF-bBk"/>
-                            <constraint firstItem="S7V-MC-zvy" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="eYr-Cc-pMd"/>
-                            <constraint firstItem="S7V-MC-zvy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="o79-VC-ybn"/>
+                            <constraint firstItem="S7V-MC-zvy" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="287" id="MJI-ia-aav"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="S7V-MC-zvy" secondAttribute="bottom" constant="340" id="fu2-Mj-9zw"/>
+                            <constraint firstItem="S7V-MC-zvy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="nwE-tn-ZSv"/>
+                            <constraint firstItem="kCr-3y-Okd" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.75" id="rSe-C6-414"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -77,6 +78,7 @@
                         <outlet property="createButton" destination="7pW-R9-b2i" id="AbR-Ah-qGV"/>
                         <outlet property="numberField" destination="sxk-Eb-uJw" id="mPj-bL-Hub"/>
                         <outlet property="signinButton" destination="Otq-PA-qhb" id="3dQ-el-2oj"/>
+                        <outlet property="topConstraint" destination="MJI-ia-aav" id="ISj-17-EhV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
