@@ -15,7 +15,6 @@ class SigninViewController: UIViewController {
     @IBOutlet weak var createButton: UIButton!
     
     @IBOutlet weak var stackView: UIStackView!
-    @IBOutlet weak var topConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
@@ -25,13 +24,16 @@ class SigninViewController: UIViewController {
         let tapScreen = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard(sender:)))
         tapScreen.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapScreen)
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.bottomConstraint.constant = (self.view.frame.height - self.stackView.frame.height)/2.0 - self.view.safeAreaInsets.bottom
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -44,16 +46,28 @@ class SigninViewController: UIViewController {
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-        print(notification)
+        let rect = (notification.userInfo!["UIKeyboardFrameEndUserInfoKey"] as! NSValue).cgRectValue
+        let bottom = rect.height + 10.0
+        if bottom > (bottomConstraint.constant + self.view.safeAreaInsets.bottom) {
+            bottomConstraint.constant = bottom
+            let duration: Double = (notification.userInfo!["UIKeyboardAnimationDurationUserInfoKey"] as! NSNumber).doubleValue
+            UIView.animate(withDuration: duration) {
+                self.view.layoutIfNeeded()
+            }
+        }
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        print(notification)
+        bottomConstraint.constant = (self.view.frame.height - self.stackView.frame.height)/2.0 - self.view.safeAreaInsets.bottom
+        let duration: Double = (notification.userInfo!["UIKeyboardAnimationDurationUserInfoKey"] as! NSNumber).doubleValue
+        UIView.animate(withDuration: duration) {
+            self.view.layoutIfNeeded()
+        }
     }
-    
     
     @IBAction func signinButtonTapped(_ sender: CustomButton) {
         self.view.endEditing(true)
+        
     }
     
 }
