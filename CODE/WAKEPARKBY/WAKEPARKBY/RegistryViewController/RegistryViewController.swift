@@ -10,20 +10,41 @@ import UIKit
 
 class RegistryViewController: UIViewController {
 
+    @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var topConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.subscribe()
         let tapScreen = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard(sender:)))
         tapScreen.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapScreen)
     }
     
+    deinit {
+        self.unSubscribe()
+    }
+    
     @objc func keyboardWillShow(notification: NSNotification) {
-        print(notification)
+//        print(notification)
+        let rect = (notification.userInfo!["UIKeyboardFrameEndUserInfoKey"] as! NSValue).cgRectValue
+        let bottom = rect.height + 10.0
+        if bottom > (bottomConstraint.constant + self.view.safeAreaInsets.bottom) {
+            bottomConstraint.constant = bottom
+            let duration: Double = (notification.userInfo!["UIKeyboardAnimationDurationUserInfoKey"] as! NSNumber).doubleValue
+            UIView.animate(withDuration: duration) {
+                self.view.layoutIfNeeded()
+            }
+        }
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        print(notification)
+//        print(notification)
+        bottomConstraint.constant = (self.view.frame.height - self.stackView.frame.height)/2.0 - self.view.safeAreaInsets.bottom
+        let duration: Double = (notification.userInfo!["UIKeyboardAnimationDurationUserInfoKey"] as! NSNumber).doubleValue
+        UIView.animate(withDuration: duration) {
+            self.view.layoutIfNeeded()
+        }
     }
     
     @objc func dismissKeyboard(sender: UITapGestureRecognizer) {
@@ -44,7 +65,6 @@ class RegistryViewController: UIViewController {
 
 fileprivate extension RegistryViewController {
     func subscribe() {
-            
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.keyboardWillShow(notification:)),
                                                name: UIResponder.keyboardWillShowNotification,
@@ -54,5 +74,15 @@ fileprivate extension RegistryViewController {
                                                selector: #selector(self.keyboardWillHide(notification:)),
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
+    }
+    
+    func unSubscribe() {
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIResponder.keyboardWillShowNotification,
+                                                  object: nil)
+        
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIResponder.keyboardWillHideNotification,
+                                                  object: nil)
     }
 }
