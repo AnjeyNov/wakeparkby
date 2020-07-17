@@ -17,6 +17,12 @@ class SigninViewController: UIViewController {
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
+    // MARK: - Life Cicle
+    
+    deinit {
+        self.unSubscribe()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.subscribe()
@@ -41,6 +47,7 @@ class SigninViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
+    // MARK: Public Methods
     @objc func dismissKeyboard(sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }
@@ -65,17 +72,17 @@ class SigninViewController: UIViewController {
         }
     }
     
+    // MARK: - IBactions
     @IBAction func signinButtonTapped(_ sender: CustomButton) {
         self.view.endEditing(true)
         
     }
-    
 }
 
+// MARK: - FilePrivate Methods
     
 fileprivate extension SigninViewController {
     func subscribe() {
-            
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.keyboardWillShow(notification:)),
                                                name: UIResponder.keyboardWillShowNotification,
@@ -86,7 +93,18 @@ fileprivate extension SigninViewController {
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
     }
+       
+    
+    func unSubscribe() {
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIResponder.keyboardWillShowNotification,
+                                                  object: nil)
         
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UIResponder.keyboardWillHideNotification,
+                                                  object: nil)
+    }
+
 }
     /*
     // MARK: - Navigation
