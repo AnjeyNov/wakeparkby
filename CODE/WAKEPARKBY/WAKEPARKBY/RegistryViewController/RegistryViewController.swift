@@ -25,6 +25,11 @@ class RegistryViewController: UIViewController {
         self.unSubscribe()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.bottomConstraint.constant = (self.view.frame.height - self.stackView.frame.height)/2.0 - self.view.safeAreaInsets.bottom
+    }
+    
     @objc func keyboardWillShow(notification: NSNotification) {
 //        print(notification)
         let rect = (notification.userInfo!["UIKeyboardFrameEndUserInfoKey"] as! NSValue).cgRectValue
