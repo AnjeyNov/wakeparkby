@@ -3,14 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		294ADA70F38DBD9D1C6E060F /* Pods_WAKEPARKBY.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE16DED945F0BE6A325DF2B2 /* Pods_WAKEPARKBY.framework */; };
 		373D63A624BC31ED00263847 /* RegistryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373D63A524BC31ED00263847 /* RegistryViewController.swift */; };
 		373D63A924BC9D2800263847 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373D63A824BC9D2800263847 /* Person.swift */; };
 		3756583824B7A7F5002A5DCE /* SigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3756583624B7A7F5002A5DCE /* SigninViewController.swift */; };
 		3790F05C24B5BF69006A9687 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3790F05B24B5BF69006A9687 /* CustomTextField.swift */; };
+		37D0D96424CB4C5F00ADE17E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37D0D96324CB4C5F00ADE17E /* GoogleService-Info.plist */; };
+		37D0D96724CB620800ADE17E /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D0D96624CB620800ADE17E /* ExternalAccessory.framework */; };
 		37D22A7224B47C8100C187A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D22A7124B47C8100C187A4 /* AppDelegate.swift */; };
 		37D22A7424B47C8100C187A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D22A7324B47C8100C187A4 /* SceneDelegate.swift */; };
 		37D22A7624B47C8100C187A4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D22A7524B47C8100C187A4 /* ViewController.swift */; };
@@ -25,6 +28,9 @@
 		373D63A824BC9D2800263847 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		3756583624B7A7F5002A5DCE /* SigninViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninViewController.swift; sourceTree = "<group>"; };
 		3790F05B24B5BF69006A9687 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		37D0D96324CB4C5F00ADE17E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		37D0D96524CB620800ADE17E /* WAKEPARKBY.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WAKEPARKBY.entitlements; sourceTree = "<group>"; };
+		37D0D96624CB620800ADE17E /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		37D22A6E24B47C8100C187A4 /* WAKEPARKBY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WAKEPARKBY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37D22A7124B47C8100C187A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		37D22A7324B47C8100C187A4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -34,6 +40,9 @@
 		37D22A7D24B47C8300C187A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		37D22A7F24B47C8300C187A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		37E5664D24B84104000D6AB9 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		57207C680A004C47AD215F12 /* Pods-WAKEPARKBY.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WAKEPARKBY.release.xcconfig"; path = "Target Support Files/Pods-WAKEPARKBY/Pods-WAKEPARKBY.release.xcconfig"; sourceTree = "<group>"; };
+		90AC67F9A353455772672894 /* Pods-WAKEPARKBY.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WAKEPARKBY.debug.xcconfig"; path = "Target Support Files/Pods-WAKEPARKBY/Pods-WAKEPARKBY.debug.xcconfig"; sourceTree = "<group>"; };
+		EE16DED945F0BE6A325DF2B2 /* Pods_WAKEPARKBY.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WAKEPARKBY.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +50,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37D0D96724CB620800ADE17E /* ExternalAccessory.framework in Frameworks */,
+				294ADA70F38DBD9D1C6E060F /* Pods_WAKEPARKBY.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +104,8 @@
 			children = (
 				37D22A7024B47C8100C187A4 /* WAKEPARKBY */,
 				37D22A6F24B47C8100C187A4 /* Products */,
+				C79322277360B15327310A8D /* Pods */,
+				C12FE8A12EAEDA5B679A580C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -107,6 +120,7 @@
 		37D22A7024B47C8100C187A4 /* WAKEPARKBY */ = {
 			isa = PBXGroup;
 			children = (
+				37D0D96524CB620800ADE17E /* WAKEPARKBY.entitlements */,
 				373D63A724BC9D0E00263847 /* Model */,
 				373D63A424BC31A900263847 /* RegistryViewController */,
 				3756583A24B7A802002A5DCE /* SigninViewController */,
@@ -118,6 +132,7 @@
 				37D22A7A24B47C8300C187A4 /* Assets.xcassets */,
 				37D22A7C24B47C8300C187A4 /* LaunchScreen.storyboard */,
 				37D22A7F24B47C8300C187A4 /* Info.plist */,
+				37D0D96324CB4C5F00ADE17E /* GoogleService-Info.plist */,
 			);
 			path = WAKEPARKBY;
 			sourceTree = "<group>";
@@ -130,6 +145,24 @@
 			path = Button;
 			sourceTree = "<group>";
 		};
+		C12FE8A12EAEDA5B679A580C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				37D0D96624CB620800ADE17E /* ExternalAccessory.framework */,
+				EE16DED945F0BE6A325DF2B2 /* Pods_WAKEPARKBY.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C79322277360B15327310A8D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				90AC67F9A353455772672894 /* Pods-WAKEPARKBY.debug.xcconfig */,
+				57207C680A004C47AD215F12 /* Pods-WAKEPARKBY.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -137,9 +170,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 37D22A8224B47C8300C187A4 /* Build configuration list for PBXNativeTarget "WAKEPARKBY" */;
 			buildPhases = (
+				F96E545E6F8BFB1D0C03A4F8 /* [CP] Check Pods Manifest.lock */,
 				37D22A6A24B47C8100C187A4 /* Sources */,
 				37D22A6B24B47C8100C187A4 /* Frameworks */,
 				37D22A6C24B47C8100C187A4 /* Resources */,
+				9F5CB151822F0A31A9598BDA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -189,12 +224,55 @@
 			buildActionMask = 2147483647;
 			files = (
 				37D22A7E24B47C8300C187A4 /* LaunchScreen.storyboard in Resources */,
+				37D0D96424CB4C5F00ADE17E /* GoogleService-Info.plist in Resources */,
 				37D22A7B24B47C8300C187A4 /* Assets.xcassets in Resources */,
 				37D22A7924B47C8100C187A4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9F5CB151822F0A31A9598BDA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WAKEPARKBY/Pods-WAKEPARKBY-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WAKEPARKBY/Pods-WAKEPARKBY-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WAKEPARKBY/Pods-WAKEPARKBY-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F96E545E6F8BFB1D0C03A4F8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WAKEPARKBY-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		37D22A6A24B47C8100C187A4 /* Sources */ = {
@@ -350,8 +428,10 @@
 		};
 		37D22A8324B47C8300C187A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 90AC67F9A353455772672894 /* Pods-WAKEPARKBY.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = WAKEPARKBY/WAKEPARKBY.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5ZMU3NJ9FM;
 				INFOPLIST_FILE = WAKEPARKBY/Info.plist;
@@ -369,8 +449,10 @@
 		};
 		37D22A8424B47C8300C187A4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 57207C680A004C47AD215F12 /* Pods-WAKEPARKBY.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = WAKEPARKBY/WAKEPARKBY.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5ZMU3NJ9FM;
 				INFOPLIST_FILE = WAKEPARKBY/Info.plist;
