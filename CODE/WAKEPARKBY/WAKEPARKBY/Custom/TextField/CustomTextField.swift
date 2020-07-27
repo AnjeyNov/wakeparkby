@@ -20,10 +20,7 @@ class CustomTextField: UITextField {
         }
     }
     
-    @IBInspectable var selectedLineColor : UIColor = UIColor.blue {
-        didSet {
-        }
-    }
+    @IBInspectable var selectedLineColor : UIColor = UIColor.blue
 
     @IBInspectable var lineHeight : CGFloat = CGFloat(1.0) {
         didSet {
@@ -31,12 +28,16 @@ class CustomTextField: UITextField {
         }
     }
     
+    deinit {
+        self.unSubscribe()
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.delegate = self;
         self.borderStyle = .none
         self.layer.addSublayer(border)
         self.layer.masksToBounds = true
+        self.subscribe()
     }
     
     override func draw(_ rect: CGRect) {
@@ -46,25 +47,41 @@ class CustomTextField: UITextField {
         border.cornerRadius = border.frame.height/2;
     }
     
-}
-
-// MARK: UITextFieldDelegate
-
-extension CustomTextField: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+    @objc func didBeginEditing() {
         border.backgroundColor = selectedLineColor.cgColor
         lineHeight = CGFloat(1.5)
         border.cornerRadius = border.frame.height/2;
     }
-
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    
+    @objc func didEndEditing() {
         border.backgroundColor = lineColor.cgColor
         lineHeight = CGFloat(1.0)
         border.cornerRadius = border.frame.height/2;
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.resignFirstResponder()
-        return true
+}
+
+// MARK: Private mothods
+fileprivate extension CustomTextField {
+    func subscribe() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.didBeginEditing),
+                                               name: UITextField.textDidBeginEditingNotification,
+                                               object: self)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.didEndEditing),
+                                               name: UITextField.textDidEndEditingNotification,
+                                               object: self)
+    }
+    
+    func unSubscribe() {
+        NotificationCenter.default.removeObserver(self,
+                                                  name: UITextField.textDidBeginEditingNotification,
+                                                  object: self)
+        
+        NotificationCenter.default.removeObserver(self,
+                                                 name: UITextField.textDidEndEditingNotification,
+                                                 object: self)
     }
 }

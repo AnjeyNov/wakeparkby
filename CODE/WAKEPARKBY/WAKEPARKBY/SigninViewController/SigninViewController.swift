@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SigninViewController: UIViewController {
 
@@ -17,7 +18,7 @@ class SigninViewController: UIViewController {
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
-    // MARK: - Life Cicle
+    // MARK: - Life Cycle
     
     deinit {
         self.unSubscribe()
@@ -26,7 +27,7 @@ class SigninViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.subscribe()
-        
+        numberField.delegate = self
         let tapScreen = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard(sender:)))
         tapScreen.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapScreen)
@@ -71,12 +72,20 @@ class SigninViewController: UIViewController {
     // MARK: - IBactions
     @IBAction func signinButtonTapped(_ sender: CustomButton) {
         self.view.endEditing(true)
+        guard let phoneNumber = self.numberField.text else { return }
+        Auth.auth().languageCode = "ru"
+        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { (verificationID, error) in
+            if let error = error {
+                // SHOW ERROR
+                return
+            }
         
-    }
+        }
+            
+        }
 }
 
 // MARK: - FilePrivate Methods
-    
 fileprivate extension SigninViewController {
     func subscribe() {
         NotificationCenter.default.addObserver(self,
@@ -102,13 +111,13 @@ fileprivate extension SigninViewController {
     }
 
 }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+
+// MARK: - UITextFieldDelegate
+extension SigninViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
-    */
+}
 

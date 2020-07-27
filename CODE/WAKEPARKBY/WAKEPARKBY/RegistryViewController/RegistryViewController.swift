@@ -13,12 +13,23 @@ class RegistryViewController: UIViewController {
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var phoneNumberField: CustomTextField!
+    @IBOutlet weak var nameField: CustomTextField!
+    @IBOutlet weak var surnameField: CustomTextField!
+    @IBOutlet weak var bdayField: CustomTextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.subscribe()
-        let tapScreen = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard(sender:)))
+        let tapScreen = UITapGestureRecognizer(target: self,
+                                               action: #selector(self.dismissKeyboard(sender:)))
         tapScreen.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapScreen)
+        phoneNumberField.delegate = self
+        nameField.delegate = self
+        surnameField.delegate = self
+        bdayField.delegate = self
     }
     
     deinit {
@@ -68,6 +79,7 @@ class RegistryViewController: UIViewController {
 
 }
 
+// MARK: -Fileprivate methods
 fileprivate extension RegistryViewController {
     func subscribe() {
         NotificationCenter.default.addObserver(self,
@@ -89,5 +101,13 @@ fileprivate extension RegistryViewController {
         NotificationCenter.default.removeObserver(self,
                                                   name: UIResponder.keyboardWillHideNotification,
                                                   object: nil)
+    }
+}
+
+// MARK: -UITextFieldDelegate
+extension RegistryViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

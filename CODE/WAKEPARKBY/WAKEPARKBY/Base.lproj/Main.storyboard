@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FZr-en-eog">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FZr-en-eog">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -170,8 +170,12 @@
                     </view>
                     <navigationItem key="navigationItem" title="Registration" id="vTY-a8-tYW"/>
                     <connections>
+                        <outlet property="bdayField" destination="Ga1-3k-noH" id="DmZ-uO-jE9"/>
                         <outlet property="bottomConstraint" destination="KVi-NK-emE" id="3tb-K8-IuU"/>
+                        <outlet property="nameField" destination="SPj-yB-Ec1" id="nvc-EW-1Wu"/>
+                        <outlet property="phoneNumberField" destination="Nam-O2-vqJ" id="Zbk-mf-swl"/>
                         <outlet property="stackView" destination="hFo-Tk-ZcS" id="hy7-UH-Bk0"/>
+                        <outlet property="surnameField" destination="C7K-rD-mbv" id="6W2-g3-va5"/>
                         <outlet property="topConstraint" destination="Ugy-wm-DKc" id="fa4-GD-xb6"/>
                     </connections>
                 </viewController>
