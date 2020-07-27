@@ -14,12 +14,13 @@ class SigninViewController: UIViewController {
     @IBOutlet weak var numberField: CustomTextField!
     @IBOutlet weak var signinButton: CustomButton!
     @IBOutlet weak var createButton: UIButton!
+    @IBOutlet weak var errorLable: UILabel!
     
     @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var substackView: UIStackView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     // MARK: - Life Cycle
-    
     deinit {
         self.unSubscribe()
     }
@@ -37,6 +38,7 @@ class SigninViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
         self.bottomConstraint.constant = (self.view.frame.height - self.stackView.frame.height)/2.0 - self.view.safeAreaInsets.bottom
+        self.stackView.setCustomSpacing(CGFloat(10.0), after: self.substackView)
     }
         
     override func viewWillDisappear(_ animated: Bool) {
@@ -76,7 +78,9 @@ class SigninViewController: UIViewController {
         Auth.auth().languageCode = "ru"
         PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { (verificationID, error) in
             if let error = error {
-                // SHOW ERROR
+                self.numberField.border.backgroundColor = UIColor.red.cgColor
+                self.errorLable.text = "Incorrect number"
+                self.errorLable.isHidden = false
                 return
             }
         
