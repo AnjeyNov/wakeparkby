@@ -150,6 +150,7 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
+                                                            <action selector="registerButtonTapped:" destination="DHF-hm-Z70" eventType="touchUpInside" id="COd-aU-2cU"/>
                                                             <action selector="signinButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GdG-r7-nIp"/>
                                                         </connections>
                                                     </button>

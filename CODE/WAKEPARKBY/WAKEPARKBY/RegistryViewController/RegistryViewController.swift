@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class RegistryViewController: UIViewController {
 
@@ -19,6 +20,8 @@ class RegistryViewController: UIViewController {
     @IBOutlet weak var surnameField: CustomTextField!
     @IBOutlet weak var bdayField: CustomTextField!
     
+    let datePicker = UIDatePicker()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.subscribe()
@@ -29,7 +32,7 @@ class RegistryViewController: UIViewController {
         phoneNumberField.delegate = self
         nameField.delegate = self
         surnameField.delegate = self
-        bdayField.delegate = self
+        self.installDatePicker()
     }
     
     deinit {
@@ -67,6 +70,28 @@ class RegistryViewController: UIViewController {
            self.view.endEditing(true)
        }
 
+    @objc func doneAction() {
+        self.getDateFromPicker()
+        self.view.endEditing(true)
+    }
+    
+    @IBAction func registerButtonTapped(_ sender: CustomButton) {
+        self.view.endEditing(true)
+        guard checkForm() else { return }
+        guard let phoneNumber = self.phoneNumberField.text else { return }
+        Auth.auth().languageCode = "ru"
+        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { (verificationID, error) in
+            UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
+            if let error = error {
+                self.phoneNumberField.border.backgroundColor = UIColor.red.cgColor
+                return
+            }
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "ConfirmViewController")
+            self.present(vc, animated: true)
+        }
+    }
+    
 }
 
 // MARK: -Fileprivate methods
@@ -93,6 +118,26 @@ fileprivate extension RegistryViewController {
                                                   object: nil)
     }
     
+    func installDatePicker() {
+        bdayField.delegate = self
+        bdayField.inputView = self.datePicker
+        datePicker.datePickerMode = .date
+        let localeID = Locale.preferredLanguages.first
+        datePicker.locale = Locale(identifier: localeID!)
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneAction))
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        toolbar.setItems([flexSpace, doneButton], animated: true)
+        bdayField.inputAccessoryView = toolbar
+    }
+    
+    func getDateFromPicker() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+        bdayField.text = formatter.string(from: datePicker.date)
+    }
+    
     func format(with mask: String, phone: String) -> String {
         let numbers = phone.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
         var result = ""
@@ -109,6 +154,14 @@ fileprivate extension RegistryViewController {
         return result
     }
     
+    func checkForm() -> Bool {
+        guard let _ = phoneNumberField.text else { return false }
+        guard let _ = nameField.text else { return false }
+        guard let _ = surnameField.text else { return false }
+        guard let _ = bdayField.text else { return false }
+        return true
+    }
+    
 }
 
 // MARK: -UITextFieldDelegate
@@ -119,7 +172,7 @@ extension RegistryViewController: UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField != phoneNumberField { return false }
+        if textField != phoneNumberField { return true }
         guard let text = textField.text else { return false }
         let newString = (text as NSString).replacingCharacters(in: range, with: string)
         textField.text = format(with: "+XXX(XX)XXX-XX-XX", phone: newString)

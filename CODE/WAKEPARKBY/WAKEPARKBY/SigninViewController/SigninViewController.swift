@@ -77,6 +77,7 @@ class SigninViewController: UIViewController {
         guard let phoneNumber = self.numberField.text else { return }
         Auth.auth().languageCode = "ru"
         PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { (verificationID, error) in
+            UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
             if let error = error {
                 self.numberField.border.backgroundColor = UIColor.red.cgColor
                 self.errorLable.text = "Incorrect number"
@@ -87,7 +88,6 @@ class SigninViewController: UIViewController {
             let vc = storyboard.instantiateViewController(withIdentifier: "ConfirmViewController")
             self.present(vc, animated: true)
         }
-        
     }
 }
 
