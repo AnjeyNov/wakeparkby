@@ -83,10 +83,12 @@ class SigninViewController: UIViewController {
                 self.errorLable.isHidden = false
                 return
             }
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "ConfirmViewController")
+            self.present(vc, animated: true)
+        }
         
-        }
-            
-        }
+    }
 }
 
 // MARK: - FilePrivate Methods
