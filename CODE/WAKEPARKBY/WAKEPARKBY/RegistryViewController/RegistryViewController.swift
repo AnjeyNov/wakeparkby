@@ -155,10 +155,24 @@ fileprivate extension RegistryViewController {
     }
     
     func checkForm() -> Bool {
-        guard let _ = phoneNumberField.text else { return false }
-        guard let _ = nameField.text else { return false }
-        guard let _ = surnameField.text else { return false }
-        guard let _ = bdayField.text else { return false }
+        var flag: Bool = false
+        if phoneNumberField.text == "" {
+            flag = true
+            phoneNumberField.border.backgroundColor = UIColor.red.cgColor
+        }
+        if nameField.text == "" {
+            flag = true
+            nameField.border.backgroundColor = UIColor.red.cgColor
+        }
+        if surnameField.text == "" {
+            flag = true
+            surnameField.border.backgroundColor = UIColor.red.cgColor
+        }
+        if bdayField.text == "" {
+            flag = true
+            bdayField.border.backgroundColor = UIColor.red.cgColor
+        }
+        if flag { return false }
         return true
     }
     

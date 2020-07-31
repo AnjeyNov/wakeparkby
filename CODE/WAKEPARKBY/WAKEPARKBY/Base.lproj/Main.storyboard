@@ -84,7 +84,7 @@
                     <connections>
                         <outlet property="bottomConstraint" destination="ssT-Gp-r4C" id="Lzo-Ik-x8V"/>
                         <outlet property="createButton" destination="7pW-R9-b2i" id="AbR-Ah-qGV"/>
-                        <outlet property="errorLable" destination="bB6-QT-8Ko" id="mPO-t5-1I9"/>
+                        <outlet property="errorLabel" destination="bB6-QT-8Ko" id="mPO-t5-1I9"/>
                         <outlet property="numberField" destination="sxk-Eb-uJw" id="mPj-bL-Hub"/>
                         <outlet property="signinButton" destination="Otq-PA-qhb" id="3dQ-el-2oj"/>
                         <outlet property="stackView" destination="S7V-MC-zvy" id="doD-Wj-tKh"/>
@@ -150,6 +150,7 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
+                                                            <action selector="confirmButtonTapped:" destination="zbS-62-XEs" eventType="touchUpInside" id="drJ-mG-JpM"/>
                                                             <action selector="registerButtonTapped:" destination="DHF-hm-Z70" eventType="touchUpInside" id="COd-aU-2cU"/>
                                                             <action selector="signinButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GdG-r7-nIp"/>
                                                         </connections>
@@ -192,6 +193,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wpv-qm-rjq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="zbS-62-XEs" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1839" y="-554"/>
         </scene>
@@ -243,6 +245,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
+                                            <action selector="confirmButtonTapped:" destination="TTK-4Y-cxj" eventType="touchUpInside" id="KRO-8l-zAN"/>
                                             <action selector="signinButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1tI-On-EsW"/>
                                         </connections>
                                     </button>
@@ -264,6 +267,7 @@
                         <outlet property="bottomConstraint" destination="EsZ-kL-U0I" id="wdP-kn-PRj"/>
                         <outlet property="codeField" destination="3VU-I2-ngb" id="DBC-Lz-tTC"/>
                         <outlet property="confirmButton" destination="ZcG-qj-ir7" id="79H-XQ-t43"/>
+                        <outlet property="errorLabel" destination="eJr-im-lWk" id="5Sl-eg-80r"/>
                         <outlet property="stackView" destination="bUI-pD-rWo" id="7pM-7C-Ya7"/>
                     </connections>
                 </viewController>

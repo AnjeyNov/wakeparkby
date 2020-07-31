@@ -8,13 +8,14 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
 class SigninViewController: UIViewController {
 
     @IBOutlet weak var numberField: CustomTextField!
     @IBOutlet weak var signinButton: CustomButton!
     @IBOutlet weak var createButton: UIButton!
-    @IBOutlet weak var errorLable: UILabel!
+    @IBOutlet weak var errorLabel: UILabel!
     
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var substackView: UIStackView!
@@ -74,20 +75,9 @@ class SigninViewController: UIViewController {
     // MARK: - IBactions
     @IBAction func signinButtonTapped(_ sender: CustomButton) {
         self.view.endEditing(true)
+        
         guard let phoneNumber = self.numberField.text else { return }
-        Auth.auth().languageCode = "ru"
-        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { (verificationID, error) in
-            UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
-            if let error = error {
-                self.numberField.border.backgroundColor = UIColor.red.cgColor
-                self.errorLable.text = "Incorrect number"
-                self.errorLable.isHidden = false
-                return
-            }
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "ConfirmViewController")
-            self.present(vc, animated: true)
-        }
+        checkUser(phoneNumber)
     }
 }
 
@@ -132,6 +122,46 @@ fileprivate extension SigninViewController {
         return result
     }
 
+    func checkUser(_ phoneNumber: String) {
+        let db = Firestore.firestore()
+        let docRef = db.collection("users").document(phoneNumber)
+        
+        
+        docRef.getDocument { ( document, error) in
+            if let document = document, document.exists {
+                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                self.verufy(phoneNumber)
+            } else {
+                DispatchQueue.main.async {
+                    self.showError("User does not exist")
+                }
+            }
+        }
+    }
+    
+    func verufy(_ phoneNumber: String) {
+        Auth.auth().languageCode = "ru"
+        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { (verificationID, error) in
+            DispatchQueue.main.async {
+                UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
+                if let error = error {
+                    self.showError("Incorrect number")
+                    return
+                }
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "ConfirmViewController")
+                self.present(vc, animated: true)
+            }
+        }
+    }
+    
+    func showError(_ message: String) {
+        self.numberField.border.backgroundColor = UIColor.red.cgColor
+        self.errorLabel.text = message
+        self.errorLabel.isHidden = false
+        return
+    }
+    
 }
 
 
