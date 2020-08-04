@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 import FirebaseAuth
 import FirebaseFirestore
 
@@ -126,10 +127,9 @@ fileprivate extension SigninViewController {
         let db = Firestore.firestore()
         let docRef = db.collection("users").document(phoneNumber)
         
-        
         docRef.getDocument { ( document, error) in
             if let document = document, document.exists {
-                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                isRegistered = true
                 self.verufy(phoneNumber)
             } else {
                 DispatchQueue.main.async {
@@ -138,14 +138,25 @@ fileprivate extension SigninViewController {
             }
         }
     }
+
     
     func verufy(_ phoneNumber: String) {
         Auth.auth().languageCode = "ru"
         PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { (verificationID, error) in
             DispatchQueue.main.async {
                 UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
-                if let error = error {
-                    self.showError("Incorrect number")
+                if error != nil {
+                    let error = error! as NSError
+                    switch error.code {
+                    case AuthErrorCode.webContextCancelled.rawValue:
+                        break
+                    case AuthErrorCode.captchaCheckFailed.rawValue:
+                        self.presentAlert("Error", error.localizedDescription)
+                    case AuthErrorCode.networkError.rawValue:
+                        self.presentAlert("Error", error.localizedDescription)
+                    default:
+                        self.showError("Incorrect number")
+                    }
                     return
                 }
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -160,6 +171,13 @@ fileprivate extension SigninViewController {
         self.errorLabel.text = message
         self.errorLabel.isHidden = false
         return
+    }
+    
+    func presentAlert(_ title: String, _ message: String) {
+        var dialogMessage = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in })
+        dialogMessage.addAction(ok)
+        self.present(dialogMessage, animated: true, completion: nil)
     }
     
 }

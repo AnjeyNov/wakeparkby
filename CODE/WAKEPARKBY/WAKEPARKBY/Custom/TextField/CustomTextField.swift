@@ -12,7 +12,6 @@ import UIKit
 class CustomTextField: UITextField {
 
     let border = CALayer()
-    //override var delegate: UITextFieldDelegate?
     
     @IBInspectable var lineColor: UIColor = UIColor.lightGray {
         didSet {

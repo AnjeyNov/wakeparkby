@@ -8,6 +8,9 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
+
+typealias EmptyCallback = () -> ()
 
 class RegistryViewController: UIViewController {
 
@@ -79,22 +82,27 @@ class RegistryViewController: UIViewController {
         self.view.endEditing(true)
         guard checkForm() else { return }
         guard let phoneNumber = self.phoneNumberField.text else { return }
-        Auth.auth().languageCode = "ru"
-        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { (verificationID, error) in
-            UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
-            if let error = error {
-                self.phoneNumberField.border.backgroundColor = UIColor.red.cgColor
-                return
+        
+        checkUser(phoneNumber) {
+            Auth.auth().languageCode = "ru"
+            PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { (verificationID, error) in
+                DispatchQueue.main.async {
+                    UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
+                    if let error = error {
+                        self.phoneNumberField.border.backgroundColor = UIColor.red.cgColor
+                        return
+                    }
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let vc = storyboard.instantiateViewController(withIdentifier: "ConfirmViewController")
+                    self.present(vc, animated: true)
+                }
             }
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "ConfirmViewController")
-            self.present(vc, animated: true)
         }
     }
     
 }
 
-// MARK: -Fileprivate methods
+// MARK: - Fileprivate methods
 fileprivate extension RegistryViewController {
     func subscribe() {
         NotificationCenter.default.addObserver(self,
@@ -176,9 +184,25 @@ fileprivate extension RegistryViewController {
         return true
     }
     
+    func checkUser(_ phoneNumber: String, _ completion: EmptyCallback? = nil) {
+        let db = Firestore.firestore()
+        let docRef = db.collection("users").document(phoneNumber)
+        
+        docRef.getDocument { ( document, error) in
+            if let document = document, document.exists {
+                DispatchQueue.main.async {
+                    self.phoneNumberField.border.backgroundColor = UIColor.red.cgColor
+                }
+            } else if completion != nil {
+                isRegistered = false
+                completion?()
+            }
+        }
+    }
+    
 }
 
-// MARK: -UITextFieldDelegate
+// MARK: - UITextFieldDelegate
 extension RegistryViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -191,5 +215,12 @@ extension RegistryViewController: UITextFieldDelegate {
         let newString = (text as NSString).replacingCharacters(in: range, with: string)
         textField.text = format(with: "+XXX(XX)XXX-XX-XX", phone: newString)
         return false
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == phoneNumberField {
+            let phoneNumber = phoneNumberField.text!
+            checkUser(phoneNumber)
+        }
     }
 }

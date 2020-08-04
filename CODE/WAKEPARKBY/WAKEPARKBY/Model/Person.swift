@@ -8,6 +8,9 @@
 
 import Foundation
 
+let user:Person = Person()
+var isRegistered: Bool = false
+
 class Person {
     var phoneNumber: String = ""
     var name: String = ""

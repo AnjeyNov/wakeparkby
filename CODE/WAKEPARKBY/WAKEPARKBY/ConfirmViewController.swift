@@ -7,13 +7,17 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ConfirmViewController: UIViewController {
 
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var codeField: CustomTextField!
+    @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var confirmButton: CustomButton!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    
+    let verificationID = UserDefaults.standard.string(forKey: "authVerificationID")
     
     deinit {
         self.unSubscribe()
@@ -55,6 +59,20 @@ class ConfirmViewController: UIViewController {
             self.view.layoutIfNeeded()
         }
     }
+    
+    @IBAction func confirmButtonTapped(_ sender: UIButton) {
+        self.view.endEditing(true)
+        if self.codeField.text == "" {
+            self.codeField.border.backgroundColor = UIColor.red.cgColor
+            self.errorLabel.text = "Input code"
+            self.errorLabel.isHidden = false
+        }
+        let verificationCode = codeField.text!
+        self.auth(verificationCode)
+        
+    }
+    
+    
 
 }
 
@@ -81,6 +99,16 @@ fileprivate extension ConfirmViewController {
         NotificationCenter.default.removeObserver(self,
                                                   name: UIResponder.keyboardWillHideNotification,
                                                   object: nil)
+    }
+    
+    func auth(_ verificationCode: String) {
+        let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationID!, verificationCode: verificationCode)
+        Auth.auth().signIn(with: credential) { (authResult, error) in
+            if let error = error {
+                
+            }
+        }
+        
     }
 }
 
