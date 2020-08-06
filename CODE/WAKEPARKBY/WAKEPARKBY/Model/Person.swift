@@ -17,7 +17,7 @@ struct Person: Codable {
     var name: String = ""
     var surname: String = ""
     var subscription: Int = -1
-    var bday: Date = Date()
+    var bday: String = ""
     var uid: String = ""
     
     enum CodingKeys: String, CodingKey {

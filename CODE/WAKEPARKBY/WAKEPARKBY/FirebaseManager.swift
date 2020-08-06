@@ -80,7 +80,7 @@ class FirebaseManager {
                 user.name = previous.nameField.text!
                 user.surname = previous.surnameField.text!
                 user.phoneNumber = previous.phoneNumberField.text!
-                user.bday = FirebaseManager.getDate(fromString: previous.bdayField.text!)
+                user.bday = previous.bdayField.text!
                 user.uid = authResult?.user.uid as! String
                 FirebaseManager.addUser()
             } else {
@@ -107,7 +107,7 @@ fileprivate extension FirebaseManager {
         let date = dateFormatter.date(from:string)!
         return date
     }
-    
+
     static func addUser() {
         do {
             let _ = try db.collection("users").document(user.phoneNumber).setData(from: user)
