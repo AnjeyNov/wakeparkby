@@ -10,8 +10,6 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
-typealias EmptyCallback = () -> ()
-
 class RegistryViewController: UIViewController {
 
     @IBOutlet weak var stackView: UIStackView!
@@ -83,21 +81,16 @@ class RegistryViewController: UIViewController {
         guard checkForm() else { return }
         guard let phoneNumber = self.phoneNumberField.text else { return }
         
-        checkUser(phoneNumber) {
-            Auth.auth().languageCode = "ru"
-            PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { (verificationID, error) in
-                DispatchQueue.main.async {
-                    UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
-                    if let error = error {
-                        self.phoneNumberField.border.backgroundColor = UIColor.red.cgColor
-                        return
-                    }
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let vc = storyboard.instantiateViewController(withIdentifier: "ConfirmViewController")
-                    self.present(vc, animated: true)
-                }
+        let successCallback = {
+            DispatchQueue.main.async {
+                self.phoneNumberField.border.backgroundColor = UIColor.red.cgColor
             }
         }
+        let failreCallback = {
+            isRegistered = false
+            FirebaseManager.verufy(phoneNumber, self)
+        }
+        FirebaseManager.checkUser(phoneNumber, successCallback, failreCallback)
     }
     
 }
@@ -183,23 +176,7 @@ fileprivate extension RegistryViewController {
         if flag { return false }
         return true
     }
-    
-    func checkUser(_ phoneNumber: String, _ completion: EmptyCallback? = nil) {
-        let db = Firestore.firestore()
-        let docRef = db.collection("users").document(phoneNumber)
         
-        docRef.getDocument { ( document, error) in
-            if let document = document, document.exists {
-                DispatchQueue.main.async {
-                    self.phoneNumberField.border.backgroundColor = UIColor.red.cgColor
-                }
-            } else if completion != nil {
-                isRegistered = false
-                completion?()
-            }
-        }
-    }
-    
 }
 
 // MARK: - UITextFieldDelegate
@@ -220,7 +197,12 @@ extension RegistryViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == phoneNumberField {
             let phoneNumber = phoneNumberField.text!
-            checkUser(phoneNumber)
+            let successCallback = {
+                DispatchQueue.main.async {
+                    self.phoneNumberField.border.backgroundColor = UIColor.red.cgColor
+                }
+            }
+            FirebaseManager.checkUser(phoneNumber, successCallback)
         }
     }
 }

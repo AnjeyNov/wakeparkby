@@ -16,4 +16,5 @@ class Person {
     var name: String = ""
     var surname: String = ""
     var subscription: Int = -1
+    var bday: String = ""
 }

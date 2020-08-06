@@ -17,6 +17,8 @@ class ConfirmViewController: UIViewController {
     @IBOutlet weak var confirmButton: CustomButton!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
+    weak var previous: UIViewController?
+    
     let verificationID = UserDefaults.standard.string(forKey: "authVerificationID")
     
     deinit {
@@ -104,11 +106,33 @@ fileprivate extension ConfirmViewController {
     func auth(_ verificationCode: String) {
         let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationID!, verificationCode: verificationCode)
         Auth.auth().signIn(with: credential) { (authResult, error) in
-            if let error = error {
-                
+            if error != nil {
+                let error = error! as NSError
+                switch error.code {
+                case AuthErrorCode.invalidVerificationCode.rawValue:
+                    self.presentAlert("Error", error.localizedDescription)
+                case AuthErrorCode.networkError.rawValue:
+                    self.presentAlert("Error", error.localizedDescription)
+                default:
+                    break
+                }
+                return
+            }
+            if !isRegistered {
+                let previous = self.previous as! RegistryViewController
+                user.name = previous.nameField.text!
+                user.surname = previous.surnameField.text!
+                user.phoneNumber = previous.phoneNumberField.text!
+                user.bday = previous.bdayField.text!
             }
         }
-        
+    }
+    
+    func presentAlert(_ title: String, _ message: String) {
+        let dialogMessage = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in })
+        dialogMessage.addAction(ok)
+        self.present(dialogMessage, animated: true, completion: nil)
     }
 }
 

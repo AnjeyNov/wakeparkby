@@ -12,6 +12,7 @@
 		373D63A924BC9D2800263847 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373D63A824BC9D2800263847 /* Person.swift */; };
 		3756583824B7A7F5002A5DCE /* SigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3756583624B7A7F5002A5DCE /* SigninViewController.swift */; };
 		376DE1F624CF51FA00CCDE22 /* ConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376DE1F524CF51FA00CCDE22 /* ConfirmViewController.swift */; };
+		378788AA24DBECE50059F7D4 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378788A924DBECE50059F7D4 /* FirebaseManager.swift */; };
 		3790F05C24B5BF69006A9687 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3790F05B24B5BF69006A9687 /* CustomTextField.swift */; };
 		37D0D96424CB4C5F00ADE17E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37D0D96324CB4C5F00ADE17E /* GoogleService-Info.plist */; };
 		37D0D96724CB620800ADE17E /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37D0D96624CB620800ADE17E /* ExternalAccessory.framework */; };
@@ -29,6 +30,7 @@
 		373D63A824BC9D2800263847 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		3756583624B7A7F5002A5DCE /* SigninViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninViewController.swift; sourceTree = "<group>"; };
 		376DE1F524CF51FA00CCDE22 /* ConfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmViewController.swift; sourceTree = "<group>"; };
+		378788A924DBECE50059F7D4 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		3790F05B24B5BF69006A9687 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		37D0D96324CB4C5F00ADE17E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		37D0D96524CB620800ADE17E /* WAKEPARKBY.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WAKEPARKBY.entitlements; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				37D22A7C24B47C8300C187A4 /* LaunchScreen.storyboard */,
 				37D22A7F24B47C8300C187A4 /* Info.plist */,
 				37D0D96324CB4C5F00ADE17E /* GoogleService-Info.plist */,
+				378788A924DBECE50059F7D4 /* FirebaseManager.swift */,
 			);
 			path = WAKEPARKBY;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				373D63A624BC31ED00263847 /* RegistryViewController.swift in Sources */,
 				3756583824B7A7F5002A5DCE /* SigninViewController.swift in Sources */,
 				37E5664E24B84104000D6AB9 /* CustomButton.swift in Sources */,
+				378788AA24DBECE50059F7D4 /* FirebaseManager.swift in Sources */,
 				37D22A7624B47C8100C187A4 /* ViewController.swift in Sources */,
 				373D63A924BC9D2800263847 /* Person.swift in Sources */,
 				37D22A7224B47C8100C187A4 /* AppDelegate.swift in Sources */,

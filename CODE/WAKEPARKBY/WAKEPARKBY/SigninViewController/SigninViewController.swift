@@ -73,12 +73,28 @@ class SigninViewController: UIViewController {
         }
     }
     
+    func showError(_ message: String) {
+        self.numberField.border.backgroundColor = UIColor.red.cgColor
+        self.errorLabel.text = message
+        self.errorLabel.isHidden = false
+        return
+    }
+    
     // MARK: - IBactions
     @IBAction func signinButtonTapped(_ sender: CustomButton) {
         self.view.endEditing(true)
         
         guard let phoneNumber = self.numberField.text else { return }
-        checkUser(phoneNumber)
+        let successCallbak: EmptyCallback = {
+            isRegistered = true
+            FirebaseManager.verufy(phoneNumber, self)
+        }
+        let failureCallback: EmptyCallback = {
+            DispatchQueue.main.async {
+                self.showError("User does not exist")
+            }
+        }
+        FirebaseManager.checkUser(phoneNumber, successCallbak, failureCallback)
     }
 }
 
@@ -123,58 +139,8 @@ fileprivate extension SigninViewController {
         return result
     }
 
-    func checkUser(_ phoneNumber: String) {
-        let db = Firestore.firestore()
-        let docRef = db.collection("users").document(phoneNumber)
-        
-        docRef.getDocument { ( document, error) in
-            if let document = document, document.exists {
-                isRegistered = true
-                self.verufy(phoneNumber)
-            } else {
-                DispatchQueue.main.async {
-                    self.showError("User does not exist")
-                }
-            }
-        }
-    }
-
-    
-    func verufy(_ phoneNumber: String) {
-        Auth.auth().languageCode = "ru"
-        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { (verificationID, error) in
-            DispatchQueue.main.async {
-                UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
-                if error != nil {
-                    let error = error! as NSError
-                    switch error.code {
-                    case AuthErrorCode.webContextCancelled.rawValue:
-                        break
-                    case AuthErrorCode.captchaCheckFailed.rawValue:
-                        self.presentAlert("Error", error.localizedDescription)
-                    case AuthErrorCode.networkError.rawValue:
-                        self.presentAlert("Error", error.localizedDescription)
-                    default:
-                        self.showError("Incorrect number")
-                    }
-                    return
-                }
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: "ConfirmViewController")
-                self.present(vc, animated: true)
-            }
-        }
-    }
-    
-    func showError(_ message: String) {
-        self.numberField.border.backgroundColor = UIColor.red.cgColor
-        self.errorLabel.text = message
-        self.errorLabel.isHidden = false
-        return
-    }
-    
     func presentAlert(_ title: String, _ message: String) {
-        var dialogMessage = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let dialogMessage = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in })
         dialogMessage.addAction(ok)
         self.present(dialogMessage, animated: true, completion: nil)
