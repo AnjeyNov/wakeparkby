@@ -7,9 +7,6 @@
 //
 
 import UIKit
-import Firebase
-import FirebaseAuth
-import FirebaseFirestore
 
 class SigninViewController: UIViewController {
 
@@ -48,7 +45,6 @@ class SigninViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
-    // MARK: Public Methods
     @objc func dismissKeyboard(sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }
@@ -73,6 +69,7 @@ class SigninViewController: UIViewController {
         }
     }
     
+// MARK: - Public methods
     func showError(_ message: String) {
         self.numberField.border.backgroundColor = UIColor.red.cgColor
         self.errorLabel.text = message
@@ -80,7 +77,7 @@ class SigninViewController: UIViewController {
         return
     }
     
-    // MARK: - IBactions
+// MARK: - IBactions
     @IBAction func signinButtonTapped(_ sender: CustomButton) {
         self.view.endEditing(true)
         
@@ -137,13 +134,6 @@ fileprivate extension SigninViewController {
             }
         }
         return result
-    }
-
-    func presentAlert(_ title: String, _ message: String) {
-        let dialogMessage = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in })
-        dialogMessage.addAction(ok)
-        self.present(dialogMessage, animated: true, completion: nil)
     }
     
 }

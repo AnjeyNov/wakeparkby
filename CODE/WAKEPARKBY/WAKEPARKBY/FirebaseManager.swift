@@ -58,6 +58,31 @@ class FirebaseManager {
         }
     }
     
+    static func auth(_ verificationCode: String, _ verificationID: String, _ viewController: ConfirmViewController) {
+        let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationID, verificationCode: verificationCode)
+        Auth.auth().signIn(with: credential) { (authResult, error) in
+            if error != nil {
+                let error = error! as NSError
+                switch error.code {
+                case AuthErrorCode.invalidVerificationCode.rawValue:
+                    self.presentAlert("Error", error.localizedDescription, viewController)
+                case AuthErrorCode.networkError.rawValue:
+                    self.presentAlert("Error", error.localizedDescription, viewController)
+                default:
+                    break
+                }
+                return
+            }
+            if !isRegistered {
+                let previous = viewController.previous as! RegistryViewController
+                user.name = previous.nameField.text!
+                user.surname = previous.surnameField.text!
+                user.phoneNumber = previous.phoneNumberField.text!
+                user.bday = previous.bdayField.text!
+            }
+        }
+    }
+    
 }
 
 fileprivate extension FirebaseManager {

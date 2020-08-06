@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import FirebaseAuth
-import FirebaseFirestore
 
 class RegistryViewController: UIViewController {
 
@@ -23,6 +21,7 @@ class RegistryViewController: UIViewController {
     
     let datePicker = UIDatePicker()
     
+// MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.subscribe()
@@ -39,14 +38,13 @@ class RegistryViewController: UIViewController {
     deinit {
         self.unSubscribe()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.bottomConstraint.constant = (self.view.frame.height - self.stackView.frame.height)/2.0 - self.view.safeAreaInsets.bottom
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-//        print(notification)
         let rect = (notification.userInfo!["UIKeyboardFrameEndUserInfoKey"] as! NSValue).cgRectValue
         let bottom = rect.height + 10.0
         if bottom > (bottomConstraint.constant + self.view.safeAreaInsets.bottom) {
@@ -59,7 +57,6 @@ class RegistryViewController: UIViewController {
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-//        print(notification)
         bottomConstraint.constant = (self.view.frame.height - self.stackView.frame.height)/2.0 - self.view.safeAreaInsets.bottom
         let duration: Double = (notification.userInfo!["UIKeyboardAnimationDurationUserInfoKey"] as! NSNumber).doubleValue
         UIView.animate(withDuration: duration) {
@@ -76,6 +73,7 @@ class RegistryViewController: UIViewController {
         self.view.endEditing(true)
     }
     
+// MARK: - IBActions
     @IBAction func registerButtonTapped(_ sender: CustomButton) {
         self.view.endEditing(true)
         guard checkForm() else { return }

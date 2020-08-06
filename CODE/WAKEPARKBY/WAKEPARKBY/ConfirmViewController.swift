@@ -7,10 +7,8 @@
 //
 
 import UIKit
-import FirebaseAuth
 
 class ConfirmViewController: UIViewController {
-
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var codeField: CustomTextField!
     @IBOutlet weak var errorLabel: UILabel!
@@ -21,6 +19,7 @@ class ConfirmViewController: UIViewController {
     
     let verificationID = UserDefaults.standard.string(forKey: "authVerificationID")
     
+// MARK: - Life cycle
     deinit {
         self.unSubscribe()
     }
@@ -37,7 +36,6 @@ class ConfirmViewController: UIViewController {
     }
     
 
-    // MARK: Public Methods
     @objc func dismissKeyboard(sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }
@@ -62,6 +60,7 @@ class ConfirmViewController: UIViewController {
         }
     }
     
+// MARK: - IBActions
     @IBAction func confirmButtonTapped(_ sender: UIButton) {
         self.view.endEditing(true)
         if self.codeField.text == "" {
@@ -70,12 +69,8 @@ class ConfirmViewController: UIViewController {
             self.errorLabel.isHidden = false
         }
         let verificationCode = codeField.text!
-        self.auth(verificationCode)
-        
+        FirebaseManager.auth(verificationCode, verificationID!, self)
     }
-    
-    
-
 }
 
 // MARK: - FilePrivate Methods
@@ -103,37 +98,6 @@ fileprivate extension ConfirmViewController {
                                                   object: nil)
     }
     
-    func auth(_ verificationCode: String) {
-        let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationID!, verificationCode: verificationCode)
-        Auth.auth().signIn(with: credential) { (authResult, error) in
-            if error != nil {
-                let error = error! as NSError
-                switch error.code {
-                case AuthErrorCode.invalidVerificationCode.rawValue:
-                    self.presentAlert("Error", error.localizedDescription)
-                case AuthErrorCode.networkError.rawValue:
-                    self.presentAlert("Error", error.localizedDescription)
-                default:
-                    break
-                }
-                return
-            }
-            if !isRegistered {
-                let previous = self.previous as! RegistryViewController
-                user.name = previous.nameField.text!
-                user.surname = previous.surnameField.text!
-                user.phoneNumber = previous.phoneNumberField.text!
-                user.bday = previous.bdayField.text!
-            }
-        }
-    }
-    
-    func presentAlert(_ title: String, _ message: String) {
-        let dialogMessage = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in })
-        dialogMessage.addAction(ok)
-        self.present(dialogMessage, animated: true, completion: nil)
-    }
 }
 
 // MARK: -UITextFieldDelegate
