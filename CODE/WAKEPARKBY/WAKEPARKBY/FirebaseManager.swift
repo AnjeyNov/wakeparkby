@@ -10,13 +10,15 @@ import Foundation
 import Firebase
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 typealias EmptyCallback = () -> ()
+
+let db = Firestore.firestore()
 
 class FirebaseManager {
     
     static func checkUser(_ phoneNumber: String, _ successfulCallback: @escaping EmptyCallback, _ failureCallback: EmptyCallback? = nil) {
-        let db = Firestore.firestore()
         let docRef = db.collection("users").document(phoneNumber)
         docRef.getDocument { ( document, error) in
             if let document = document, document.exists {
@@ -78,7 +80,11 @@ class FirebaseManager {
                 user.name = previous.nameField.text!
                 user.surname = previous.surnameField.text!
                 user.phoneNumber = previous.phoneNumberField.text!
-                user.bday = previous.bdayField.text!
+                user.bday = FirebaseManager.getDate(fromString: previous.bdayField.text!)
+                user.uid = authResult?.user.uid as! String
+                FirebaseManager.addUser()
+            } else {
+                getUser((authResult?.user.phoneNumber)!)
             }
         }
     }
@@ -92,5 +98,40 @@ fileprivate extension FirebaseManager {
         let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in })
         dialogMessage.addAction(ok)
         viewController.present(dialogMessage, animated: true, completion: nil)
+    }
+    
+    static func getDate(fromString string: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        let date = dateFormatter.date(from:string)!
+        return date
+    }
+    
+    static func addUser() {
+        do {
+            let _ = try db.collection("users").document(user.phoneNumber).setData(from: user)
+        }
+        catch {
+            print(error)
+        }
+    }
+    
+    static func getUser(_ phoneNumber: String) {
+        let phoneNumber = format(with: "+XXX(XX)XXX-XX-XX", phone: phoneNumber)
+        let docRef = db.collection("users").document(phoneNumber)
+        docRef.getDocument() { (document, error) in
+            let result = Result {
+                try document?.data(as: Person.self)
+            }
+            switch result {
+            case .success(let person):
+                if let person = person {
+                    user = person
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }

@@ -7,14 +7,41 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 
-let user:Person = Person()
+var user:Person = Person()
 var isRegistered: Bool = false
 
-class Person {
+struct Person: Codable {
     var phoneNumber: String = ""
     var name: String = ""
     var surname: String = ""
     var subscription: Int = -1
-    var bday: String = ""
+    var bday: Date = Date()
+    var uid: String = ""
+    
+    enum CodingKeys: String, CodingKey {
+        case name
+        case surname
+        case subscription
+        case uid
+        case phoneNumber
+        case bday
+    }
+}
+
+func format(with mask: String, phone: String) -> String {
+    let numbers = phone.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
+    var result = ""
+    var index = numbers.startIndex
+
+    for ch in mask where index < numbers.endIndex {
+        if ch == "X" {
+            result.append(numbers[index])
+            index = numbers.index(after: index)
+        } else {
+            result.append(ch)
+        }
+    }
+    return result
 }
