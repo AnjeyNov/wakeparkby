@@ -86,9 +86,9 @@ class RegistryViewController: UIViewController {
         }
         let failreCallback = {
             isRegistered = false
-            FirebaseManager.verufy(phoneNumber, self)
+            FirebaseManager.shared.verufy(phoneNumber, self)
         }
-        FirebaseManager.checkUser(phoneNumber, successCallback, failreCallback)
+        FirebaseManager.shared.checkUser(phoneNumber, successCallback, failreCallback)
     }
     
 }
@@ -184,7 +184,7 @@ extension RegistryViewController: UITextFieldDelegate {
                     self.phoneNumberField.border.backgroundColor = UIColor.red.cgColor
                 }
             }
-            FirebaseManager.checkUser(phoneNumber, successCallback)
+            FirebaseManager.shared.checkUser(phoneNumber, successCallback)
         }
     }
 }

@@ -84,14 +84,14 @@ class SigninViewController: UIViewController {
         guard let phoneNumber = self.numberField.text else { return }
         let successCallbak: EmptyCallback = {
             isRegistered = true
-            FirebaseManager.verufy(phoneNumber, self)
+            FirebaseManager.shared.verufy(phoneNumber, self)
         }
         let failureCallback: EmptyCallback = {
             DispatchQueue.main.async {
                 self.showError("User does not exist")
             }
         }
-        FirebaseManager.checkUser(phoneNumber, successCallbak, failureCallback)
+        FirebaseManager.shared.checkUser(phoneNumber, successCallbak, failureCallback)
     }
 }
 

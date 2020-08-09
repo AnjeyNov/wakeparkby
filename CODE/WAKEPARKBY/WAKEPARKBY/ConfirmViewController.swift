@@ -69,7 +69,7 @@ class ConfirmViewController: UIViewController {
             self.errorLabel.isHidden = false
         }
         let verificationCode = codeField.text!
-        FirebaseManager.auth(verificationCode, verificationID!, self)
+        FirebaseManager.shared.auth(verificationCode, verificationID!, self)
     }
 }
 

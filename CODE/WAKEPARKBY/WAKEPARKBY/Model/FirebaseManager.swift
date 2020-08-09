@@ -14,11 +14,18 @@ import FirebaseFirestoreSwift
 
 typealias EmptyCallback = () -> ()
 
-let db = Firestore.firestore()
 
 class FirebaseManager {
     
-    static func checkUser(_ phoneNumber: String, _ successfulCallback: @escaping EmptyCallback, _ failureCallback: EmptyCallback? = nil) {
+    static let shared = FirebaseManager()
+    let db = Firestore.firestore()
+    
+    private init() {}
+}
+
+// MARK: - Public methods
+extension FirebaseManager {
+    func checkUser(_ phoneNumber: String, _ successfulCallback: @escaping EmptyCallback, _ failureCallback: EmptyCallback? = nil) {
         let docRef = db.collection("users").document(phoneNumber)
         docRef.getDocument { ( document, error) in
             if let document = document, document.exists {
@@ -29,7 +36,7 @@ class FirebaseManager {
         }
     }
     
-    static func verufy(_ phoneNumber: String, _ viewController: UIViewController) {
+    func verufy(_ phoneNumber: String, _ viewController: UIViewController) {
         Auth.auth().languageCode = "ru"
         PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { (verificationID, error) in
             DispatchQueue.main.async {
@@ -40,9 +47,9 @@ class FirebaseManager {
                     case AuthErrorCode.webContextCancelled.rawValue:
                         break
                     case AuthErrorCode.captchaCheckFailed.rawValue:
-                        FirebaseManager.presentAlert("Error", error.localizedDescription, viewController)
+                        self.presentAlert("Error", error.localizedDescription, viewController)
                     case AuthErrorCode.networkError.rawValue:
-                        FirebaseManager.presentAlert("Error", error.localizedDescription, viewController)
+                        self.presentAlert("Error", error.localizedDescription, viewController)
                     default:
                         if viewController is SigninViewController {
                             (viewController as! SigninViewController).showError("Incorrect number")
@@ -52,15 +59,12 @@ class FirebaseManager {
                     }
                     return
                 }
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: "ConfirmViewController") as! ConfirmViewController
-                vc.previous = viewController
-                viewController.present(vc, animated: true)
+                Presenter.shared.presentConfirmViewController(withParent: viewController)
             }
         }
     }
     
-    static func auth(_ verificationCode: String, _ verificationID: String, _ viewController: ConfirmViewController) {
+    func auth(_ verificationCode: String, _ verificationID: String, _ viewController: ConfirmViewController) {
         let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationID, verificationCode: verificationCode)
         Auth.auth().signIn(with: credential) { (authResult, error) in
             if error != nil {
@@ -82,9 +86,9 @@ class FirebaseManager {
                 user.phoneNumber = previous.phoneNumberField.text!
                 user.bday = previous.bdayField.text!
                 user.uid = authResult?.user.uid as! String
-                FirebaseManager.addUser()
+                self.addUser()
             } else {
-                getUser((authResult?.user.phoneNumber)!)
+                self.getUser((authResult?.user.phoneNumber)!)
             }
         }
     }
@@ -93,14 +97,14 @@ class FirebaseManager {
 
 fileprivate extension FirebaseManager {
     
-    static func presentAlert(_ title: String, _ message: String, _ viewController: UIViewController) {
+    func presentAlert(_ title: String, _ message: String, _ viewController: UIViewController) {
         let dialogMessage = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in })
         dialogMessage.addAction(ok)
         viewController.present(dialogMessage, animated: true, completion: nil)
     }
     
-    static func getDate(fromString string: String) -> Date {
+    func getDate(fromString string: String) -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
         dateFormatter.dateFormat = "dd.MM.yyyy"
@@ -108,7 +112,7 @@ fileprivate extension FirebaseManager {
         return date
     }
 
-    static func addUser() {
+    func addUser() {
         do {
             let _ = try db.collection("users").document(user.phoneNumber).setData(from: user)
         }
@@ -117,7 +121,7 @@ fileprivate extension FirebaseManager {
         }
     }
     
-    static func getUser(_ phoneNumber: String) {
+    func getUser(_ phoneNumber: String) {
         let phoneNumber = format(with: "+XXX(XX)XXX-XX-XX", phone: phoneNumber)
         let docRef = db.collection("users").document(phoneNumber)
         docRef.getDocument() { (document, error) in
