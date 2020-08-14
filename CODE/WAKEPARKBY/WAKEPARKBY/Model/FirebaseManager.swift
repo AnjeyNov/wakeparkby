@@ -90,6 +90,7 @@ extension FirebaseManager {
             } else {
                 self.getUser((authResult?.user.phoneNumber)!)
             }
+            Presenter.shared.presentMainMenu()
         }
     }
     

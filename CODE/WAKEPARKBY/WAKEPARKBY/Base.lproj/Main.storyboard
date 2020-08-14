@@ -308,7 +308,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DMz-8D-BK4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="100" y="1667"/>
+            <point key="canvasLocation" x="303" y="1667"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="pJ3-8B-eTh">
@@ -341,7 +341,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yPH-Pk-fWG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1935" y="1660"/>
+            <point key="canvasLocation" x="1935" y="1667"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="pwF-RM-YM8">
@@ -382,6 +382,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rh3-Vr-dHI" customClass="CustomButton" customModule="WAKEPARKBY" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="59.5" width="36" height="30"/>
                                         <state key="normal" title=" Add "/>
+                                        <connections>
+                                            <segue destination="bpK-kZ-DeO" kind="push" id="Izh-bK-UID"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -400,7 +403,38 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XOB-10-3ze" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2822" y="1659"/>
+            <point key="canvasLocation" x="1935" y="2399"/>
+        </scene>
+        <!--Scan View Controller-->
+        <scene sceneID="R8K-TY-D7W">
+            <objects>
+                <viewController id="bpK-kZ-DeO" customClass="ScanViewController" customModule="WAKEPARKBY" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZRm-QS-ZX5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="72z-b1-L2m">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="frZ-OH-V4B" firstAttribute="bottom" secondItem="72z-b1-L2m" secondAttribute="bottom" id="Bk0-6f-WkB"/>
+                            <constraint firstItem="frZ-OH-V4B" firstAttribute="trailing" secondItem="72z-b1-L2m" secondAttribute="trailing" id="NDN-yN-0bG"/>
+                            <constraint firstItem="72z-b1-L2m" firstAttribute="leading" secondItem="frZ-OH-V4B" secondAttribute="leading" id="eE3-hf-vrt"/>
+                            <constraint firstItem="72z-b1-L2m" firstAttribute="top" secondItem="frZ-OH-V4B" secondAttribute="top" id="tIa-xv-AMp"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="frZ-OH-V4B"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="MVb-YT-4qJ"/>
+                    <connections>
+                        <outlet property="scanView" destination="72z-b1-L2m" id="1YR-ey-vg2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="diB-gO-GBq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1935" y="3114"/>
         </scene>
     </scenes>
     <resources>
