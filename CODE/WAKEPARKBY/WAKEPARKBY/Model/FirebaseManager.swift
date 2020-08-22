@@ -47,9 +47,9 @@ extension FirebaseManager {
                     case AuthErrorCode.webContextCancelled.rawValue:
                         break
                     case AuthErrorCode.captchaCheckFailed.rawValue:
-                        self.presentAlert("Error", error.localizedDescription, viewController)
+                        Presenter.shared.presentAlert("Error", error.localizedDescription, viewController)
                     case AuthErrorCode.networkError.rawValue:
-                        self.presentAlert("Error", error.localizedDescription, viewController)
+                        Presenter.shared.presentAlert("Error", error.localizedDescription, viewController)
                     default:
                         if viewController is SigninViewController {
                             (viewController as! SigninViewController).showError("Incorrect number")
@@ -71,9 +71,9 @@ extension FirebaseManager {
                 let error = error! as NSError
                 switch error.code {
                 case AuthErrorCode.invalidVerificationCode.rawValue:
-                    self.presentAlert("Error", error.localizedDescription, viewController)
+                    Presenter.shared.presentAlert("Error", error.localizedDescription, viewController)
                 case AuthErrorCode.networkError.rawValue:
-                    self.presentAlert("Error", error.localizedDescription, viewController)
+                    Presenter.shared.presentAlert("Error", error.localizedDescription, viewController)
                 default:
                     break
                 }
@@ -96,15 +96,8 @@ extension FirebaseManager {
     
 }
 
+// MARK: - Fileprivate methods
 fileprivate extension FirebaseManager {
-    
-    func presentAlert(_ title: String, _ message: String, _ viewController: UIViewController) {
-        let dialogMessage = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in })
-        dialogMessage.addAction(ok)
-        viewController.present(dialogMessage, animated: true, completion: nil)
-    }
-    
     func getDate(fromString string: String) -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX

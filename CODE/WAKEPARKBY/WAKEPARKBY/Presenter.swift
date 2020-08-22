@@ -40,4 +40,10 @@ extension Presenter {
         rootViewController = vc
     }
     
+    func presentAlert(_ title: String, _ message: String, _ viewController: UIViewController) {
+        let dialogMessage = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in })
+        dialogMessage.addAction(ok)
+        viewController.present(dialogMessage, animated: true, completion: nil)
+    }    
 }
