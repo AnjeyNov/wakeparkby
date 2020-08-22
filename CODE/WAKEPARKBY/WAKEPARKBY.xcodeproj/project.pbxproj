@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		294ADA70F38DBD9D1C6E060F /* Pods_WAKEPARKBY.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE16DED945F0BE6A325DF2B2 /* Pods_WAKEPARKBY.framework */; };
 		371433B824DD256F00A6A4D9 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371433B724DD256F00A6A4D9 /* Presenter.swift */; };
-		371EB2FD24E0288800E0DB23 /* SubscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371EB2FC24E0288800E0DB23 /* SubscriptionViewController.swift */; };
 		373D63A624BC31ED00263847 /* RegistryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373D63A524BC31ED00263847 /* RegistryViewController.swift */; };
 		373D63A924BC9D2800263847 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373D63A824BC9D2800263847 /* Person.swift */; };
 		3743A7AB24E2CFE500201827 /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3743A7AA24E2CFE500201827 /* ScanViewController.swift */; };
 		3756583824B7A7F5002A5DCE /* SigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3756583624B7A7F5002A5DCE /* SigninViewController.swift */; };
 		376DE1F624CF51FA00CCDE22 /* ConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376DE1F524CF51FA00CCDE22 /* ConfirmViewController.swift */; };
+		37835CFE24E839CE000C3061 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37835CFD24E839CE000C3061 /* AccountViewController.swift */; };
 		378788AA24DBECE50059F7D4 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378788A924DBECE50059F7D4 /* FirebaseManager.swift */; };
 		3790F05C24B5BF69006A9687 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3790F05B24B5BF69006A9687 /* CustomTextField.swift */; };
 		37D0D96424CB4C5F00ADE17E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37D0D96324CB4C5F00ADE17E /* GoogleService-Info.plist */; };
@@ -30,12 +30,12 @@
 
 /* Begin PBXFileReference section */
 		371433B724DD256F00A6A4D9 /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
-		371EB2FC24E0288800E0DB23 /* SubscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SubscriptionViewController.swift; path = SubscriptionViewController/SubscriptionViewController.swift; sourceTree = "<group>"; };
 		373D63A524BC31ED00263847 /* RegistryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistryViewController.swift; sourceTree = "<group>"; };
 		373D63A824BC9D2800263847 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		3743A7AA24E2CFE500201827 /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
 		3756583624B7A7F5002A5DCE /* SigninViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninViewController.swift; sourceTree = "<group>"; };
 		376DE1F524CF51FA00CCDE22 /* ConfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmViewController.swift; sourceTree = "<group>"; };
+		37835CFD24E839CE000C3061 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		378788A924DBECE50059F7D4 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		3790F05B24B5BF69006A9687 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		37D0D96324CB4C5F00ADE17E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -71,7 +71,7 @@
 		371433B524DD251600A6A4D9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				3743A7A924E2CF6F00201827 /* SubscriptionViewController */,
+				3743A7A924E2CF6F00201827 /* AccountViewController */,
 				3790F05924B5BF08006A9687 /* Custom */,
 				376DE1F724CF520600CCDE22 /* ConfirmViewController */,
 				3756583A24B7A802002A5DCE /* SigninViewController */,
@@ -105,13 +105,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		3743A7A924E2CF6F00201827 /* SubscriptionViewController */ = {
+		3743A7A924E2CF6F00201827 /* AccountViewController */ = {
 			isa = PBXGroup;
 			children = (
-				371EB2FC24E0288800E0DB23 /* SubscriptionViewController.swift */,
 				3743A7AA24E2CFE500201827 /* ScanViewController.swift */,
+				37835CFD24E839CE000C3061 /* AccountViewController.swift */,
 			);
-			name = SubscriptionViewController;
+			name = AccountViewController;
 			sourceTree = "<group>";
 		};
 		3756583A24B7A802002A5DCE /* SigninViewController */ = {
@@ -328,12 +328,12 @@
 			files = (
 				376DE1F624CF51FA00CCDE22 /* ConfirmViewController.swift in Sources */,
 				371433B824DD256F00A6A4D9 /* Presenter.swift in Sources */,
+				37835CFE24E839CE000C3061 /* AccountViewController.swift in Sources */,
 				3790F05C24B5BF69006A9687 /* CustomTextField.swift in Sources */,
 				373D63A624BC31ED00263847 /* RegistryViewController.swift in Sources */,
 				3743A7AB24E2CFE500201827 /* ScanViewController.swift in Sources */,
 				3756583824B7A7F5002A5DCE /* SigninViewController.swift in Sources */,
 				37E5664E24B84104000D6AB9 /* CustomButton.swift in Sources */,
-				371EB2FD24E0288800E0DB23 /* SubscriptionViewController.swift in Sources */,
 				378788AA24DBECE50059F7D4 /* FirebaseManager.swift in Sources */,
 				37D22A7624B47C8100C187A4 /* ViewController.swift in Sources */,
 				373D63A924BC9D2800263847 /* Person.swift in Sources */,
