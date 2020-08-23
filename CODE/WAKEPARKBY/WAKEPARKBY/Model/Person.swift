@@ -12,11 +12,11 @@ import FirebaseFirestoreSwift
 var user:Person = Person()
 var isRegistered: Bool = false
 
-struct Person: Codable {
+class Person: Codable {
     var phoneNumber: String = ""
     var name: String = ""
     var surname: String = ""
-    var subscription: Int = -1
+    var subscription: Int = 0
     var bday: String = ""
     var uid: String = ""
     
@@ -27,6 +27,12 @@ struct Person: Codable {
         case uid
         case phoneNumber
         case bday
+    }
+}
+
+extension Person {
+    func addSubscription(count: Int) {
+        self.subscription = subscription + count
     }
 }
 

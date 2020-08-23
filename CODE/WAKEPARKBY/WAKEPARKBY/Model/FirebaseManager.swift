@@ -13,6 +13,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 typealias EmptyCallback = () -> ()
+typealias Callback1 = (Any) -> ()
 
 
 class FirebaseManager {
@@ -94,10 +95,29 @@ extension FirebaseManager {
         }
     }
     
+    func checkSubsciption(_ code: String, _ successfulCallback: @escaping Callback1, _ failureCallback: Callback1? = nil) {
+        let docRef = db.collection("availableSubscription").document(code)
+        docRef.getDocument { ( document, error) in
+            if let document = document, document.exists {
+                let count: Int = document.data()!["count"] as! Int
+                user.addSubscription(count: count)
+                FirebaseManager.shared.uploadSubscription()
+                successfulCallback(count)
+                docRef.delete()
+            } else if failureCallback != nil {
+                failureCallback?(error)
+            }
+        }
+    }
 }
 
 // MARK: - Fileprivate methods
 fileprivate extension FirebaseManager {
+    
+    func uploadSubscription() {
+        db.collection("users").document(user.phoneNumber).updateData(["subscription" : user.subscription])
+    }
+    
     func getDate(fromString string: String) -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX

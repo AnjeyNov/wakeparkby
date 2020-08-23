@@ -364,7 +364,6 @@
         <!--Account-->
         <scene sceneID="cDf-i8-3uk">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XOB-10-3ze" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="gN7-NS-8l5" customClass="AccountViewController" customModule="WAKEPARKBY" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fmq-KR-yRo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -490,6 +489,7 @@
                         <outlet property="surnameLabel" destination="bbQ-LJ-kVe" id="8Wj-Lm-dVo"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XOB-10-3ze" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1935" y="2399"/>
         </scene>
@@ -505,24 +505,42 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cmh-WJ-G9r" userLabel="Loading view">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="tdw-Tb-80X">
+                                        <rect key="frame" x="188.5" y="344" width="37" height="37"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="tdw-Tb-80X" firstAttribute="centerY" secondItem="cmh-WJ-G9r" secondAttribute="centerY" id="OZH-ai-MfE"/>
+                                    <constraint firstItem="tdw-Tb-80X" firstAttribute="centerX" secondItem="cmh-WJ-G9r" secondAttribute="centerX" id="u9K-6U-am5"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="frZ-OH-V4B" firstAttribute="bottom" secondItem="72z-b1-L2m" secondAttribute="bottom" id="Bk0-6f-WkB"/>
+                            <constraint firstItem="cmh-WJ-G9r" firstAttribute="leading" secondItem="ZRm-QS-ZX5" secondAttribute="leading" id="Lem-uW-i2x"/>
+                            <constraint firstItem="cmh-WJ-G9r" firstAttribute="trailing" secondItem="frZ-OH-V4B" secondAttribute="trailing" id="N8V-32-Vxa"/>
                             <constraint firstItem="frZ-OH-V4B" firstAttribute="trailing" secondItem="72z-b1-L2m" secondAttribute="trailing" id="NDN-yN-0bG"/>
                             <constraint firstItem="72z-b1-L2m" firstAttribute="leading" secondItem="frZ-OH-V4B" secondAttribute="leading" id="eE3-hf-vrt"/>
+                            <constraint firstItem="cmh-WJ-G9r" firstAttribute="bottom" secondItem="frZ-OH-V4B" secondAttribute="bottom" id="nQB-U3-gWw"/>
                             <constraint firstItem="72z-b1-L2m" firstAttribute="top" secondItem="frZ-OH-V4B" secondAttribute="top" id="tIa-xv-AMp"/>
+                            <constraint firstItem="cmh-WJ-G9r" firstAttribute="top" secondItem="frZ-OH-V4B" secondAttribute="top" id="wyz-Y6-7wK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="frZ-OH-V4B"/>
                     </view>
                     <navigationItem key="navigationItem" id="MVb-YT-4qJ"/>
                     <connections>
+                        <outlet property="indicator" destination="tdw-Tb-80X" id="LHM-pJ-L7M"/>
+                        <outlet property="loadingView" destination="cmh-WJ-G9r" id="Mcf-Ey-QVr"/>
                         <outlet property="scanView" destination="72z-b1-L2m" id="1YR-ey-vg2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="diB-gO-GBq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1935" y="3114"/>
+            <point key="canvasLocation" x="1934.7826086956522" y="3113.8392857142858"/>
         </scene>
     </scenes>
     <resources>

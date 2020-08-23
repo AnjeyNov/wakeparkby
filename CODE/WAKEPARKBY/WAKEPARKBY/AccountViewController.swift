@@ -17,13 +17,14 @@ class AccountViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         nameLabel.text = user.name
         surnameLabel.text = user.surname
         phoneLabel.text = user.phoneNumber
         bdayLabel.text = user.bday
         subscriptionLabel.text = String(user.subscription)
-        
     }
     
 }

@@ -14,6 +14,8 @@ class ScanViewController: UIViewController {
     var previewLayer: AVCaptureVideoPreviewLayer!
 
     @IBOutlet weak var scanView: UIView!
+    @IBOutlet weak var loadingView: UIView!
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
 }
 
 // MARK: - LifeCicle
@@ -57,6 +59,16 @@ extension ScanViewController {
         scanView.layer.addSublayer(previewLayer)
 
         captureSession.startRunning()
+        
+        if !UIAccessibility.isReduceTransparencyEnabled {
+            loadingView.backgroundColor = .clear
+            let blurEffect = UIBlurEffect(style: .light)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            blurEffectView.frame = loadingView.bounds
+            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            loadingView.insertSubview(blurEffectView, belowSubview: indicator)
+            indicator.hidesWhenStopped = true
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -80,7 +92,32 @@ extension ScanViewController {
 // MARK: - Fileprivate methods
 fileprivate extension ScanViewController {
     func found(code: String) {
-        print(code)
+        loadingView.isHidden = false
+        indicator.startAnimating()
+        
+        let alertAction: EmptyCallback = {
+            self.loadingView.isHidden = true
+            self.captureSession.startRunning()
+        }
+        
+        let successfulCallback: Callback1 = { count in
+            let count = count as! Int
+            self.indicator.stopAnimating()
+            
+            Presenter.shared.presentAlert("Success", "You are credited with " + String(count) + " minutes", self, callback: alertAction)
+        }
+        
+        let failureCallback: Callback1 = { error in
+            self.indicator.stopAnimating()
+            let error = error as? Error
+            if error == nil {
+                Presenter.shared.presentAlert("Sorry", "This code is invalid", self, callback: alertAction)
+            } else {
+                Presenter.shared.presentAlert("Error", error?.localizedDescription as! String, self, callback: alertAction)
+            }
+        }
+        
+        FirebaseManager.shared.checkSubsciption(code, successfulCallback, failureCallback)
     }
     
     func failed() {
